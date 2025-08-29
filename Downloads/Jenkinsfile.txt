@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Prakash562006/Loki.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                bat 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run Script') {
+            steps {
+                bat 'python loki.py'
+            }
+        }
+    }
+}
